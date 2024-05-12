@@ -1,54 +1,34 @@
-import axios from "axios";
 import { LoaderCircle } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { toast } from "sonner";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { DataTable } from "@/components/DataTable";
 import PageTitle from "@/components/PageTitle";
-import { Button } from "@/components/ui/button";
 import columns from "./columns";
+import { getStudents } from "@/redux/actions/student";
+import NewStudentDialog from "@/components/students/NewStudentDialog";
+import { getClasses } from "@/redux/actions/class";
 
 const StudentsPage = () => {
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const { token } = useSelector((state) => state.auth);
-
-  const getStudents = useCallback(async () => {
-    setIsLoading(true);
-    try {
-      const res = await axios.get(
-        `${import.meta.env.VITE_BACKEND_API}/api/students`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      const { data } = res.data;
-      setData(data);
-    } catch (error) {
-      toast.error(error?.response.data.message);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [token]);
+  const dispatch = useDispatch();
+  const { students, isLoading } = useSelector((state) => state.student);
+  const { classes } = useSelector((state) => state._class);
 
   useEffect(() => {
-    getStudents();
-  }, [getStudents]);
+    dispatch(getStudents());
+    dispatch(getClasses());
+  }, [dispatch]);
 
   return (
     <div>
       <div className="flex justify-between">
         <PageTitle title="Users" />
-        <Button asChild>
-          <Link to="/users/new">Add Student</Link>
-        </Button>
+        <NewStudentDialog classes={classes} />
       </div>
       <div className="my-4 space-y-4">
         {isLoading ? (
           <LoaderCircle className="h-10 w-full my-4 animate-spin" />
         ) : (
-          <DataTable columns={columns} data={data} mainSearchTerm="NISN" />
+          <DataTable columns={columns} data={students} mainSearchTerm="NISN" />
         )}
       </div>
     </div>

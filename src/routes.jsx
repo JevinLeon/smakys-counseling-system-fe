@@ -5,9 +5,6 @@ import {
   CounselingsPage,
   HomePage,
   LoginPage,
-  NewCounseling,
-  NewStudent,
-  NewUser,
   NotFoundPage,
   ProfilePage,
   StudentDetail,
@@ -41,16 +38,6 @@ const routes = [
     ),
   },
   {
-    path: "/users/new",
-    element: (
-      <ProtectedPage>
-        <Layout>
-          <NewUser />
-        </Layout>
-      </ProtectedPage>
-    ),
-  },
-  {
     path: "/users/:id",
     element: (
       <ProtectedPage>
@@ -66,16 +53,6 @@ const routes = [
       <ProtectedPage>
         <Layout>
           <StudentsPage />
-        </Layout>
-      </ProtectedPage>
-    ),
-  },
-  {
-    path: "/students/new",
-    element: (
-      <ProtectedPage>
-        <Layout>
-          <NewStudent />
         </Layout>
       </ProtectedPage>
     ),
@@ -116,16 +93,6 @@ const routes = [
       <ProtectedPage>
         <Layout>
           <CounselingsPage />
-        </Layout>
-      </ProtectedPage>
-    ),
-  },
-  {
-    path: "/counselings/new",
-    element: (
-      <ProtectedPage>
-        <Layout>
-          <NewCounseling />
         </Layout>
       </ProtectedPage>
     ),

@@ -3,38 +3,18 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import columns from "./columns";
 import { DataTable } from "@/components/DataTable";
-import { useCallback, useEffect, useState } from "react";
-import axios from "axios";
-import { useSelector } from "react-redux";
-import { toast } from "sonner";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { LoaderCircle } from "lucide-react";
+import { getCounselings } from "@/redux/actions/counseling";
 
 const CounselingsPage = () => {
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const { token } = useSelector((state) => state.auth);
-
-  const getCounselings = useCallback(async () => {
-    setIsLoading(true);
-    try {
-      const res = await axios.get(
-        `${import.meta.env.VITE_BACKEND_API}/api/counselings`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      const { data } = res.data;
-      setData(data);
-    } catch (error) {
-      toast.error(error?.response.data.message);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [token]);
+  const dispatch = useDispatch();
+  const { counselings, isLoading } = useSelector((state) => state.counseling);
 
   useEffect(() => {
-    getCounselings();
-  }, [getCounselings]);
+    dispatch(getCounselings());
+  }, [dispatch]);
 
   return (
     <div>
@@ -48,7 +28,11 @@ const CounselingsPage = () => {
         {isLoading ? (
           <LoaderCircle className="h-10 w-full my-4 animate-spin" />
         ) : (
-          <DataTable columns={columns} data={data} mainSearchTerm="title" />
+          <DataTable
+            columns={columns}
+            data={counselings}
+            mainSearchTerm="title"
+          />
         )}
       </div>
     </div>

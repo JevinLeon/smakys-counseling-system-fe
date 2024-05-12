@@ -1,5 +1,6 @@
 import { DataTableColumnHeader } from "@/components/DataTableColumnHeader";
 import TableActions from "@/components/TableActions";
+import { Link } from "react-router-dom";
 
 const columns = [
   {
@@ -13,17 +14,41 @@ const columns = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="NISN" />
     ),
+    cell: ({ row }) => (
+      <Link
+        to={`/students/${row.getValue("id")}`}
+        className="hover:underline underline-offset-1"
+      >
+        {row.getValue("NISN")}
+      </Link>
+    ),
   },
   {
     accessorKey: "NIS",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="NIS" />
     ),
+    cell: ({ row }) => (
+      <Link
+        to={`/students/${row.getValue("id")}`}
+        className="hover:underline underline-offset-1"
+      >
+        {row.getValue("NIS")}
+      </Link>
+    ),
   },
   {
     accessorKey: "name",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Name" />
+    ),
+    cell: ({ row }) => (
+      <Link
+        to={`/students/${row.getValue("id")}`}
+        className="hover:underline underline-offset-1"
+      >
+        {row.getValue("name")}
+      </Link>
     ),
   },
   {
@@ -101,12 +126,7 @@ const columns = [
   {
     id: "actions",
     cell: ({ row }) => {
-      return (
-        <TableActions
-          editHref={`/students/${row.original.id}`}
-          deleteFunc={() => console.log("deleted")}
-        />
-      );
+      return <TableActions editHref={`/students/${row.original.id}`} />;
     },
   },
 ];
