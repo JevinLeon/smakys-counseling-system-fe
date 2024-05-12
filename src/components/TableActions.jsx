@@ -9,7 +9,7 @@ import { MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-const TableActions = ({ editHref, deleteFunc }) => {
+const TableActions = ({ editHref }) => {
   return (
     <>
       <DropdownMenu>
@@ -23,13 +23,7 @@ const TableActions = ({ editHref, deleteFunc }) => {
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
 
           <DropdownMenuItem className="cursor-pointer" asChild>
-            <Link to={editHref}>Edit</Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            className="text-red-500 cursor-pointer"
-            onClick={deleteFunc}
-          >
-            Delete
+            <Link to={editHref}>Details</Link>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

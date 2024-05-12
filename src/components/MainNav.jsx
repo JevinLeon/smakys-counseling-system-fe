@@ -1,13 +1,22 @@
 import { cn } from "@/lib/utils";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const MainNav = () => {
-  const navLinks = [
-    { name: "Users", href: "/users" },
-    { name: "Counselings", href: "/counselings" },
-    { name: "Students", href: "/students" },
-    { name: "Classes", href: "/classes" },
-  ];
+  const { user } = useSelector((state) => state.auth);
+  const navLinks =
+    user?.role == "superadmin"
+      ? [
+          { name: "Users", href: "/users" },
+          { name: "Counselings", href: "/counselings" },
+          { name: "Students", href: "/students" },
+          { name: "Classes", href: "/classes" },
+        ]
+      : [
+          { name: "Counselings", href: "/counselings" },
+          { name: "Students", href: "/students" },
+          { name: "Classes", href: "/classes" },
+        ];
 
   return (
     <div className="mr-4 hidden md:flex">

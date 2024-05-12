@@ -29,7 +29,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Settings2 } from "lucide-react";
 
-export function DataTable({ columns, data }) {
+export function DataTable({ columns, data, mainSearchTerm = "name" }) {
   const [sorting, setSorting] = useState([]);
 
   const [columnFilters, setColumnFilters] = useState([]);
@@ -57,10 +57,10 @@ export function DataTable({ columns, data }) {
     <div>
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter name..."
-          value={table.getColumn("name")?.getFilterValue() ?? ""}
+          placeholder={`Filter ${mainSearchTerm}...`}
+          value={table.getColumn(mainSearchTerm)?.getFilterValue() ?? ""}
           onChange={(event) =>
-            table.getColumn("name")?.setFilterValue(event.target.value)
+            table.getColumn(mainSearchTerm)?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
