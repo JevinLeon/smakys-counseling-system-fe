@@ -12,7 +12,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { deleteClass } from "@/redux/actions/class";
+import { deleteCounseling } from "@/redux/actions/counseling";
 
 const DeleteCounselingDialog = ({ id }) => {
   const navigate = useNavigate();
@@ -25,13 +25,13 @@ const DeleteCounselingDialog = ({ id }) => {
   const handleDelete = (e) => {
     e.preventDefault();
 
-    dispatch(deleteClass(navigate, setOpen, id));
+    dispatch(deleteCounseling(navigate, setOpen, id));
   };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="destructive">Delete Class</Button>
+        <Button variant="destructive">Delete Counseling</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

@@ -1,5 +1,6 @@
 import { DataTableColumnHeader } from "@/components/DataTableColumnHeader";
 import TableActions from "@/components/TableActions";
+import { Link } from "react-router-dom";
 
 const columns = [
   {
@@ -12,6 +13,20 @@ const columns = [
     accessorKey: "title",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Title" />
+    ),
+    cell: ({ row }) => (
+      <Link
+        to={`/counselings/${row.getValue("id")}`}
+        className="hover:underline underline-offset-1"
+      >
+        {row.getValue("title")}
+      </Link>
+    ),
+  },
+  {
+    accessorKey: "date",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Date" />
     ),
   },
   {

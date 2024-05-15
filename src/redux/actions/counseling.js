@@ -48,9 +48,11 @@ export const getCounseling = (id) => async (dispatch, getState) => {
 };
 
 export const addCounseling = (setOpen, data) => async (dispatch, getState) => {
-  const { token } = getState().auth;
+  const { token, user } = getState().auth;
 
   dispatch(setIsLoading(true));
+
+  data = { ...data, counselorId: user.id };
 
   try {
     const res = await axios.post(
@@ -76,9 +78,11 @@ export const addCounseling = (setOpen, data) => async (dispatch, getState) => {
 
 export const editCounseling =
   (setOpen, data, id) => async (dispatch, getState) => {
-    const { token } = getState().auth;
+    const { token, user } = getState().auth;
 
     dispatch(setIsLoading(true));
+
+    data = { ...data, counselorId: user.id };
 
     try {
       const res = await axios.put(

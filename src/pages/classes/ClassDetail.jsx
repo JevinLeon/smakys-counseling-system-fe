@@ -1,14 +1,16 @@
 import DeleteClassDialog from "@/components/classes/DeleteClassDialog";
 import EditClassDialog from "@/components/classes/EditClassDialog";
+import { DataTable } from "@/components/DataTable";
 import PageTitle from "@/components/PageTitle";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { editClass, getClass } from "@/redux/actions/class";
+import { getClass } from "@/redux/actions/class";
 import { LoaderCircle } from "lucide-react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import columns from "./detailColumns";
 
 const ClassDetail = () => {
   const { _class, isLoading } = useSelector((state) => state._class);
@@ -49,6 +51,18 @@ const ClassDetail = () => {
               </div>
             </form>
           </div>
+        )}
+      </div>
+      <div className="my-4 space-y-4">
+        <div>Students in {_class.name} : </div>
+        {isLoading && _class?.Students ? (
+          <LoaderCircle className="h-10 w-full my-4 animate-spin" />
+        ) : (
+          <DataTable
+            columns={columns}
+            data={_class.Students}
+            mainSearchTerm="NISN"
+          />
         )}
       </div>
     </div>

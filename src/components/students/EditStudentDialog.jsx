@@ -164,12 +164,12 @@ const EditStudentDialog = ({ id, student, classes }) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>Edit Class</Button>
+        <Button>Edit Student</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Edit class</DialogTitle>
-          <DialogDescription>Update an existing class.</DialogDescription>
+          <DialogTitle>Edit student</DialogTitle>
+          <DialogDescription>Update an existing student.</DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className="h-[420px] overflow-auto pl-2 pr-5">
