@@ -28,6 +28,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Settings2 } from "lucide-react";
+import { DataTableToolbar } from "./DataTableToolbar";
 
 export function DataTable({ columns, data, mainSearchTerm = "name" }) {
   const [sorting, setSorting] = useState([]);
@@ -56,14 +57,19 @@ export function DataTable({ columns, data, mainSearchTerm = "name" }) {
   return (
     <div>
       <div className="flex items-center py-4">
-        <Input
-          placeholder={`Filter ${mainSearchTerm}...`}
-          value={table.getColumn(mainSearchTerm)?.getFilterValue() ?? ""}
-          onChange={(event) =>
-            table.getColumn(mainSearchTerm)?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
+        <div className="flex flex-1 items-center space-x-2">
+          <Input
+            placeholder={`Filter ${mainSearchTerm}...`}
+            value={table.getColumn(mainSearchTerm)?.getFilterValue() ?? ""}
+            onChange={(event) =>
+              table
+                .getColumn(mainSearchTerm)
+                ?.setFilterValue(event.target.value)
+            }
+            className="max-w-sm"
+          />
+          <DataTableToolbar table={table} />
+        </div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto gap-2">

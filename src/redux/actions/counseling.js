@@ -5,6 +5,7 @@ import {
   setCounseling,
   setIsLoading,
 } from "../reducers/counseling";
+import { setLogs } from "../reducers/log";
 
 export const getCounselings = () => async (dispatch, getState) => {
   const { token } = getState().auth;
@@ -66,8 +67,21 @@ export const addCounseling = (setOpen, data) => async (dispatch, getState) => {
     );
     const { data: CounselingData } = CounselingRes.data;
     const { message } = res.data;
+
+    // Posting it to the log
+    const counselingId = res.data.data.id;
+
+    const logRes = await axios.post(
+      `${import.meta.env.VITE_BACKEND_API}/api/counseling-logs`,
+      { userId: user.id, activity: "created", counselingId: counselingId },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+
+    const { data: logsData } = logRes.data;
+
     toast(message);
     dispatch(setCounselings(CounselingData));
+    dispatch(setLogs(logsData));
   } catch (error) {
     toast(error?.response.data.message);
   } finally {
@@ -97,8 +111,21 @@ export const editCounseling =
 
       const { data: CounselingData } = CounselingRes.data;
       const { message } = res.data;
+
+      // Posting it to the log
+      const counselingId = res.data.data.id;
+
+      const logRes = await axios.post(
+        `${import.meta.env.VITE_BACKEND_API}/api/counseling-logs`,
+        { userId: user.id, activity: "updated", counselingId: counselingId },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      const { data: logsData } = logRes.data;
+
       toast(message);
       dispatch(setCounseling(CounselingData));
+      dispatch(setLogs(logsData));
     } catch (error) {
       toast(error?.response.data.message);
     } finally {
@@ -109,7 +136,7 @@ export const editCounseling =
 
 export const deleteCounseling =
   (navigate, setOpen, id) => async (dispatch, getState) => {
-    const { token } = getState().auth;
+    const { token, user } = getState().auth;
     dispatch(setIsLoading(true));
 
     try {
@@ -118,7 +145,20 @@ export const deleteCounseling =
         { headers: { Authorization: `Bearer ${token}` } }
       );
       const { message } = res.data;
+
+      // Posting it to the log
+      const counselingId = res.data.data.id;
+
+      const logRes = await axios.post(
+        `${import.meta.env.VITE_BACKEND_API}/api/counseling-logs`,
+        { userId: user.id, activity: "deleted", counselingId: counselingId },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      const { data: logsData } = logRes.data;
+
       toast(message);
+      dispatch(setLogs(logsData));
     } catch (error) {
       toast(error?.response.data.message);
     } finally {

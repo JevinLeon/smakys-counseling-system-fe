@@ -1,6 +1,7 @@
 import HomePage from "./home/Home";
 import CounselingsPage from "./counselings/Counselings";
 import CounselingDetail from "./counselings/CounselingDetail";
+import CounselingLogsPage from "./counseling-logs/CounselingLogs";
 import UsersPage from "./users/Users";
 import UserDetail from "./users/UserDetail";
 import StudentsPage from "./students/Students";
@@ -15,6 +16,7 @@ export {
   HomePage,
   CounselingsPage,
   CounselingDetail,
+  CounselingLogsPage,
   UsersPage,
   UserDetail,
   StudentsPage,

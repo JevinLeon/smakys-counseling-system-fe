@@ -31,7 +31,7 @@ const DeleteStudentDialog = ({ id }) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="destructive">Delete Class</Button>
+        <Button variant="destructive">Delete Student</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

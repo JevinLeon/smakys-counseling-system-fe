@@ -66,6 +66,25 @@ export const getProfile =
     }
   };
 
+export const changePassword = (data) => async (dispatch, getState) => {
+  const { token } = getState().auth;
+
+  try {
+    const res = await axios.post(
+      `${import.meta.env.VITE_BACKEND_API}/api/auth/change-password`,
+      data,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    const { message } = res.data;
+
+    toast(message);
+  } catch (error) {
+    toast(error?.response.data.message);
+  } finally {
+    setIsLoading(false);
+  }
+};
+
 export const logout = (navigate) => async (dispatch) => {
   dispatch(setToken(null));
   dispatch(setUser(null));

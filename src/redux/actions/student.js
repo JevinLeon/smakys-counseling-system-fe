@@ -119,3 +119,34 @@ export const deleteStudent =
       navigate("/students");
     }
   };
+
+export const addStudentsWithExcel =
+  (setOpen, file) => async (dispatch, getState) => {
+    const { token } = getState().auth;
+
+    dispatch(setIsLoading(true));
+
+    let data = new FormData();
+    data.append("file", file);
+
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_BACKEND_API}/api/students/excel`,
+        data,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      const StudentRes = await axios.get(
+        `${import.meta.env.VITE_BACKEND_API}/api/students`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      const { data: StudentData } = StudentRes.data;
+      const { message } = res.data;
+      toast(message);
+      dispatch(setStudents(StudentData));
+    } catch (error) {
+      toast(error?.response.data.message);
+    } finally {
+      dispatch(setIsLoading(false));
+      setOpen(false);
+    }
+  };

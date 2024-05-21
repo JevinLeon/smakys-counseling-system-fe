@@ -2,6 +2,7 @@ import {
   ClassDetail,
   ClassesPage,
   CounselingDetail,
+  CounselingLogsPage,
   CounselingsPage,
   HomePage,
   LoginPage,
@@ -93,6 +94,16 @@ const routes = [
       <ProtectedPage>
         <Layout>
           <CounselingsPage />
+        </Layout>
+      </ProtectedPage>
+    ),
+  },
+  {
+    path: "/counseling-logs",
+    element: (
+      <ProtectedPage>
+        <Layout>
+          <CounselingLogsPage />
         </Layout>
       </ProtectedPage>
     ),

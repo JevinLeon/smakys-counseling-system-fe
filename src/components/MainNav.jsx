@@ -9,11 +9,13 @@ const MainNav = () => {
       ? [
           { name: "Users", href: "/users" },
           { name: "Counselings", href: "/counselings" },
+          { name: "Counseling Logs", href: "/counseling-logs" },
           { name: "Students", href: "/students" },
           { name: "Classes", href: "/classes" },
         ]
       : [
           { name: "Counselings", href: "/counselings" },
+          { name: "Counseling Logs", href: "/counseling-logs" },
           { name: "Students", href: "/students" },
           { name: "Classes", href: "/classes" },
         ];
@@ -25,7 +27,7 @@ const MainNav = () => {
           to="/"
           className="mr-6 flex items-center space-x-2 font-semibold text-xl"
         >
-          Kampus Merdeka
+          SMAKYS
         </Link>
       </div>
       <nav className="flex items-center gap-4 text-sm lg:gap-6">

@@ -1,3 +1,8 @@
+import { format } from "date-fns";
+import { CalendarIcon, LoaderCircle } from "lucide-react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 import DeleteCounselingDialog from "@/components/counselings/DeleteCounselingDialog";
 import EditCounselingDialog from "@/components/counselings/EditCounselingDialog";
 import PageTitle from "@/components/PageTitle";
@@ -8,11 +13,6 @@ import { Popover, PopoverTrigger } from "@/components/ui/popover";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { getCounseling } from "@/redux/actions/counseling";
-import { format } from "date-fns";
-import { CalendarIcon, LoaderCircle } from "lucide-react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
 
 const CounselingDetail = () => {
   const { counseling, isLoading } = useSelector((state) => state.counseling);
@@ -27,7 +27,7 @@ const CounselingDetail = () => {
 
   return (
     <div>
-      <PageTitle title="Counseling Detail" />
+      <PageTitle title="Detail Konseling" />
 
       <div className="my-8 max-w-[50%]">
         {isLoading && (

@@ -1,10 +1,9 @@
 import { DataTable } from "@/components/DataTable";
 import PageTitle from "@/components/PageTitle";
-import { Button } from "@/components/ui/button";
 import { LoaderCircle } from "lucide-react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import columns from "./columns";
 import { getUsers } from "@/redux/actions/user";
 import NewUserDialog from "@/components/users/NewUserDialog";

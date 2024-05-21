@@ -50,9 +50,7 @@ const NewCounselingDialog = ({ students }) => {
   const [counselingType, setCounselingType] = useState("");
   const [arrivalType, setArrivalType] = useState("");
   const [status, setStatus] = useState("");
-  // const [isNew, setIsNew] = useState(true);
   const [isGroup, setIsGroup] = useState(false);
-  // const [prevCounselingId, setPrevCounselingId] = useState(null);
   const [NISN, setNISN] = useState(isGroup ? [] : "");
 
   const [open, setOpen] = useState(false);
@@ -63,9 +61,9 @@ const NewCounselingDialog = ({ students }) => {
 
   const getStudentsOptions = () => {
     return students.map((student) => ({
-      label: student.name,
-      value: student.name,
-      NISN: student.NISN,
+      label: student?.name,
+      value: student?.name,
+      NISN: student?.NISN,
     }));
   };
   const studentsOptions = getStudentsOptions();
@@ -76,7 +74,6 @@ const NewCounselingDialog = ({ students }) => {
     e.preventDefault();
 
     let updatedNISN;
-    console.log(updatedNISN);
 
     if (isGroup) {
       if (NISN.length == 1) {
@@ -116,7 +113,8 @@ const NewCounselingDialog = ({ students }) => {
       if (counselingType == "") {
         setError((prev) => ({
           ...prev,
-          counselingType: "Counseling type is required",
+          counselingType:
+            "Counseling Component / Komponen Konseling is required",
         }));
       }
       if (arrivalType == "") {
@@ -136,8 +134,6 @@ const NewCounselingDialog = ({ students }) => {
 
     dispatch(
       addCounseling(setOpen, {
-        // isNew,
-        // prevCounselingId,
         title,
         description,
         notes,
@@ -163,50 +159,6 @@ const NewCounselingDialog = ({ students }) => {
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className="h-[420px] overflow-auto pl-2 pr-5">
-            {/* <div className="space-y-2 mt-2 mb-8 flex items-center gap-2">
-              <Checkbox
-                id="isNew"
-                checked={isNew}
-                onCheckedChange={(checked) => {
-                  setIsNew(checked);
-                  setPrevCounselingId(null);
-                }}
-              />
-              <Label htmlFor="isNew">New Counseling</Label>
-            </div>
-            {!isNew && (
-              <div className="space-y-2 my-2">
-                <Label htmlFor="prevCounselingId" className="text-right">
-                  Previous Counseling
-                </Label>
-                <Select
-                  onValueChange={(e) => {
-                    setPrevCounselingId(parseInt(e));
-                  }}
-                  disabled={isLoading}
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Previous Counseling" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {counselings.map((counseling) => (
-                      <SelectItem
-                        key={counseling.id}
-                        value={counseling.id.toString()}
-                        className="cursor-pointer"
-                      >
-                        {counseling.title}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                {error?.prevCounselingId && prevCounselingId == null && (
-                  <p className="text-sm text-red-400">
-                    {error?.prevCounselingId}
-                  </p>
-                )}
-              </div>
-            )} */}
             <div className="space-y-2 my-2">
               <Label htmlFor="title" className="text-right">
                 Title
@@ -240,7 +192,7 @@ const NewCounselingDialog = ({ students }) => {
               </Label>
               <Textarea
                 id="notes"
-                placeholder="notes"
+                placeholder="Notes"
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 disabled={isLoading}
@@ -302,7 +254,7 @@ const NewCounselingDialog = ({ students }) => {
                       className="w-full justify-between"
                     >
                       {NISN
-                        ? students?.find((student) => student.NISN == NISN)
+                        ? students?.find((student) => student?.NISN == NISN)
                             ?.name
                         : "Select a student"}
                       <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -328,22 +280,22 @@ const NewCounselingDialog = ({ students }) => {
                         <CommandList>
                           {students.map((student) => (
                             <CommandItem
-                              key={student.id}
-                              value={student.name}
+                              key={student?.id}
+                              value={student?.name}
                               onSelect={() => {
-                                setNISN(student.NISN);
+                                setNISN(student?.NISN);
                                 setStudentBoxOpen(false);
                               }}
                             >
                               <Check
                                 className={cn(
                                   "mr-2 h-4 w-4",
-                                  NISN === student.NISN
+                                  NISN === student?.NISN
                                     ? "opacity-100"
                                     : "opacity-0"
                                 )}
                               />
-                              {student.name}
+                              {student?.name}
                             </CommandItem>
                           ))}
                         </CommandList>
@@ -375,7 +327,7 @@ const NewCounselingDialog = ({ students }) => {
             )}
             <div className="space-y-2 my-2">
               <Label htmlFor="counselingType" className="text-right">
-                Counseling Type
+                Counseling Component / Komponen Konseling
               </Label>
               <Select
                 onValueChange={(e) => {
@@ -384,7 +336,7 @@ const NewCounselingDialog = ({ students }) => {
                 disabled={isLoading}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="Counseling Type" />
+                  <SelectValue placeholder="Counseling Component / Komponen Konseling" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem
@@ -419,7 +371,7 @@ const NewCounselingDialog = ({ students }) => {
             </div>
             <div className="space-y-2 my-2">
               <Label htmlFor="arrivalType" className="text-right">
-                Arrival Type
+                Arrival Type / Riwayat Kedatangan
               </Label>
               <Select
                 onValueChange={(e) => {
@@ -428,7 +380,7 @@ const NewCounselingDialog = ({ students }) => {
                 disabled={isLoading}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="Arrival Type" />
+                  <SelectValue placeholder="Arrival Type / Riwayat Kedatangan" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="voluntary" className="cursor-pointer">
@@ -461,7 +413,7 @@ const NewCounselingDialog = ({ students }) => {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="pending" className="cursor-pointer">
-                    Pending
+                    Continued
                   </SelectItem>
                   <SelectItem value="completed" className="cursor-pointer">
                     Completed

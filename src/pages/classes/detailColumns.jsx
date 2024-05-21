@@ -1,6 +1,6 @@
+import { Link } from "react-router-dom";
 import { DataTableColumnHeader } from "@/components/DataTableColumnHeader";
 import TableActions from "@/components/TableActions";
-import { Link } from "react-router-dom";
 
 const columns = [
   {

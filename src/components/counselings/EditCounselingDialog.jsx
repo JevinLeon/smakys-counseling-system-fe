@@ -52,11 +52,7 @@ const EditCounselingDialog = ({ id, counseling, students }) => {
   );
   const [arrivalType, setArrivalType] = useState(counseling.arrivalType);
   const [status, setStatus] = useState(counseling.status);
-  // const [isNew, setIsNew] = useState(counseling.isNew);
   const [isGroup, setIsGroup] = useState(counseling.isGroup);
-  // const [prevCounselingId, setPrevCounselingId] = useState(
-  //   counseling.prevCounselingId
-  // );
   const [NISN, setNISN] = useState(counseling.NISN);
 
   const [open, setOpen] = useState(false);
@@ -71,16 +67,16 @@ const EditCounselingDialog = ({ id, counseling, students }) => {
       let studentGroupResult = [];
 
       if (!isGroup) {
-        return students.filter((student) => student.NISN == studentsNISN[0]);
+        return students.filter((student) => student?.NISN == studentsNISN[0]);
       }
 
       studentsNISN.map((NISN) => {
         students.map((student) => {
-          if (student.NISN == NISN)
+          if (student?.NISN == NISN)
             studentGroupResult.push({
-              label: student.name,
-              value: student.name,
-              NISN: student.NISN,
+              label: student?.name,
+              value: student?.name,
+              NISN: student?.NISN,
             });
         });
       });
@@ -92,9 +88,9 @@ const EditCounselingDialog = ({ id, counseling, students }) => {
 
   const getStudentsOptions = () => {
     return students.map((student) => ({
-      label: student.name,
-      value: student.name,
-      NISN: student.NISN,
+      label: student?.name,
+      value: student?.name,
+      NISN: student?.NISN,
     }));
   };
   const studentsOptions = getStudentsOptions();
@@ -145,13 +141,14 @@ const EditCounselingDialog = ({ id, counseling, students }) => {
       if (counselingType == "") {
         setError((prev) => ({
           ...prev,
-          counselingType: "Counseling type is required",
+          counselingType:
+            "Counseling Component / Komponen Konseling is required",
         }));
       }
       if (arrivalType == "") {
         setError((prev) => ({
           ...prev,
-          arrivalType: "Arrival type is required",
+          arrivalType: "Arrival type / Riwayat Kedatangan is required",
         }));
       }
       if (status == "") {
@@ -184,7 +181,6 @@ const EditCounselingDialog = ({ id, counseling, students }) => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      {console.log(NISN)}
       <DialogTrigger asChild>
         <Button>Edit Counseling</Button>
       </DialogTrigger>
@@ -195,50 +191,6 @@ const EditCounselingDialog = ({ id, counseling, students }) => {
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className="h-[420px] overflow-auto pl-2 pr-5">
-            {/* <div className="space-y-2 mt-2 mb-8 flex items-center gap-2">
-              <Checkbox
-                id="isNew"
-                checked={isNew}
-                onCheckedChange={(checked) => {
-                  setIsNew(checked);
-                  setPrevCounselingId(null);
-                }}
-              />
-              <Label htmlFor="isNew">New Counseling</Label>
-            </div>
-            {!isNew && (
-              <div className="space-y-2 my-2">
-                <Label htmlFor="prevCounselingId" className="text-right">
-                  Previous Counseling
-                </Label>
-                <Select
-                  onValueChange={(e) => {
-                    setPrevCounselingId(parseInt(e));
-                  }}
-                  disabled={isLoading}
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder={counseling.Counseling.title} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {counselings.map((counseling) => (
-                      <SelectItem
-                        key={counseling.id}
-                        value={counseling.id.toString()}
-                        className="cursor-pointer"
-                      >
-                        {counseling.title}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                {error?.prevCounselingId && prevCounselingId == null && (
-                  <p className="text-sm text-red-400">
-                    {error?.prevCounselingId}
-                  </p>
-                )}
-              </div>
-            )} */}
             <div className="space-y-2 my-2">
               <Label htmlFor="title" className="text-right">
                 Title
@@ -334,7 +286,7 @@ const EditCounselingDialog = ({ id, counseling, students }) => {
                       className="w-full justify-between"
                     >
                       {NISN
-                        ? students?.find((student) => student.NISN == NISN)
+                        ? students?.find((student) => student?.NISN == NISN)
                             ?.name
                         : "Select a student"}
                       <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -360,22 +312,22 @@ const EditCounselingDialog = ({ id, counseling, students }) => {
                         <CommandList>
                           {students.map((student) => (
                             <CommandItem
-                              key={student.id}
-                              value={student.name}
+                              key={student?.id}
+                              value={student?.name}
                               onSelect={() => {
-                                setNISN(student.NISN);
+                                setNISN(student?.NISN);
                                 setStudentBoxOpen(false);
                               }}
                             >
                               <Check
                                 className={cn(
                                   "mr-2 h-4 w-4",
-                                  NISN === student.NISN
+                                  NISN === student?.NISN
                                     ? "opacity-100"
                                     : "opacity-0"
                                 )}
                               />
-                              {student.name}
+                              {student?.name}
                             </CommandItem>
                           ))}
                         </CommandList>
@@ -407,7 +359,7 @@ const EditCounselingDialog = ({ id, counseling, students }) => {
             )}
             <div className="space-y-2 my-2">
               <Label htmlFor="counselingType" className="text-right">
-                Counseling Type
+                Counseling Component / Komponen Konseling
               </Label>
               <Select
                 onValueChange={(e) => {
@@ -461,7 +413,7 @@ const EditCounselingDialog = ({ id, counseling, students }) => {
             </div>
             <div className="space-y-2 my-2">
               <Label htmlFor="arrivalType" className="text-right">
-                Arrival Type
+                Arrival Type / Riwayat Kedatangan
               </Label>
               <Select
                 onValueChange={(e) => {

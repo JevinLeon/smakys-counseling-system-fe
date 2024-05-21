@@ -1,6 +1,4 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { LoaderCircle } from "lucide-react";
+import { LoaderCircle, Sheet } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -13,10 +11,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { addClass } from "@/redux/actions/class";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { FileUploader } from "react-drag-drop-files";
+import { addStudentsWithExcel } from "@/redux/actions/student";
 
-const NewClassDialog = () => {
-  const [name, setName] = useState("");
+const UploadStudentExcelDialog = () => {
+  const [file, setFile] = useState(null);
+
   const [open, setOpen] = useState(false);
   const [error, setError] = useState(null);
 
@@ -27,39 +29,40 @@ const NewClassDialog = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (name == "") {
-      setError("Name is required");
+    if (!file) {
+      setError("File is required");
       return;
     }
 
-    dispatch(addClass(setOpen, { name }));
+    dispatch(addStudentsWithExcel(setOpen, file));
   };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>Add Class</Button>
+        <Button variant="success">
+          <Sheet className="h-4 w-4 mr-2" /> Upload Excel to Add Students
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add class</DialogTitle>
-          <DialogDescription>Create a new class.</DialogDescription>
+          <DialogTitle>Upload excel file to add students</DialogTitle>
+          <DialogDescription>
+            Upload excel file to add students.
+          </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className="space-y-2 my-2">
-            <Label htmlFor="name" className="text-right">
-              Name
-            </Label>
-            <Input
-              id="name"
-              placeholder="Class name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              disabled={isLoading}
+            <FileUploader
+              multiple={false}
+              handleChange={(e) => {
+                setFile(e);
+              }}
+              name="file"
+              types={["xlsx"]}
             />
-            {error && name == "" && (
-              <p className="text-sm text-red-400">{error}</p>
-            )}
+            <p>{file ? `File name: ${file.name}` : "No files uploaded yet"}</p>
+            {error && !file && <p className="text-sm text-red-400">{error}</p>}
           </div>
           <DialogFooter className="mt-4">
             <Button type="submit" disabled={isLoading}>
@@ -75,4 +78,4 @@ const NewClassDialog = () => {
   );
 };
 
-export default NewClassDialog;
+export default UploadStudentExcelDialog;

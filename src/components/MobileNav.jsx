@@ -4,8 +4,26 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
+import { useSelector } from "react-redux";
 const MobileNav = () => {
   const [open, setOpen] = useState(false);
+  const { user } = useSelector((state) => state.auth);
+
+  const navLinks =
+    user?.role == "superadmin"
+      ? [
+          { name: "Users", href: "/users" },
+          { name: "Counselings", href: "/counselings" },
+          { name: "Counseling Logs", href: "/counseling-logs" },
+          { name: "Students", href: "/students" },
+          { name: "Classes", href: "/classes" },
+        ]
+      : [
+          { name: "Counselings", href: "/counselings" },
+          { name: "Counseling Logs", href: "/counseling-logs" },
+          { name: "Students", href: "/students" },
+          { name: "Classes", href: "/classes" },
+        ];
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -51,55 +69,27 @@ const MobileNav = () => {
           to="/"
           className="mr-6 flex items-center space-x-2 font-semibold text-xl"
           onOpenChange={setOpen}
+          onClick={() => setOpen(false)}
         >
-          Kampus Merdeka
+          SMAKYS
         </Link>
         <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
           <div className="flex flex-col space-y-3">
-            <Link
-              to="/cars"
-              className={cn(
-                "transition-colors hover:text-foreground/80",
-                location.pathname.includes("/cars")
-                  ? "text-foreground"
-                  : "text-foreground/60"
-              )}
-            >
-              Cars
-            </Link>
-            <Link
-              to="/manufacturers"
-              className={cn(
-                "transition-colors hover:text-foreground/80",
-                location.pathname.includes("/manufacturers")
-                  ? "text-foreground"
-                  : "text-foreground/60"
-              )}
-            >
-              Manufacturers
-            </Link>
-            <Link
-              to="/transmissions"
-              className={cn(
-                "transition-colors hover:text-foreground/80",
-                location.pathname.includes("/transmissions")
-                  ? "text-foreground"
-                  : "text-foreground/60"
-              )}
-            >
-              Transmissions
-            </Link>
-            <Link
-              to="/types"
-              className={cn(
-                "transition-colors hover:text-foreground/80",
-                location.pathname.includes("/types")
-                  ? "text-foreground"
-                  : "text-foreground/60"
-              )}
-            >
-              Types
-            </Link>
+            {navLinks.map((item, index) => (
+              <Link
+                key={index}
+                to={item.href}
+                className={cn(
+                  "transition-colors hover:text-foreground/80",
+                  location.pathname.includes(item.href)
+                    ? "text-foreground"
+                    : "text-foreground/60"
+                )}
+                onClick={() => setOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
           </div>
         </ScrollArea>
       </SheetContent>

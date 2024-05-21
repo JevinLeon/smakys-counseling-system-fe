@@ -60,7 +60,7 @@ const StudentDetail = () => {
               </div>
               <div className="grid w-full max-w-sm items-center gap-1.5">
                 <Label>Class</Label>
-                <Input type="text" value={student.Class.name} disabled />
+                <Input type="text" value={student.Class?.name} disabled />
               </div>
               <div className="grid w-full max-w-sm items-center gap-1.5">
                 <Label>Phone number</Label>

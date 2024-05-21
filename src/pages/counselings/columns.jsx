@@ -4,19 +4,13 @@ import { Link } from "react-router-dom";
 
 const columns = [
   {
-    accessorKey: "id",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Id" />
-    ),
-  },
-  {
     accessorKey: "title",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Title" />
     ),
     cell: ({ row }) => (
       <Link
-        to={`/counselings/${row.getValue("id")}`}
+        to={`/counselings/${row.original.id}`}
         className="hover:underline underline-offset-1"
       >
         {row.getValue("title")}
@@ -34,29 +28,64 @@ const columns = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Description" />
     ),
+    cell: ({ row }) => (
+      <div>
+        {row.getValue("description") == "" ? "-" : row.getValue("description")}
+      </div>
+    ),
   },
   {
     accessorKey: "notes",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Notes" />
     ),
+    cell: ({ row }) => (
+      <div>{row.getValue("notes") == "" ? "-" : row.getValue("notes")}</div>
+    ),
   },
   {
     accessorKey: "counselingType",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Counseling Type" />
+      <DataTableColumnHeader
+        column={column}
+        title="Counseling Component / Komponen Konseling"
+      />
     ),
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id));
+    },
   },
   {
     accessorKey: "arrivalType",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Arrival Type" />
+      <DataTableColumnHeader
+        column={column}
+        title="Arrival Type / Riwayat Kedatangan"
+      />
     ),
+
+    cell: ({ row }) => (
+      <div>
+        {row.getValue("arrivalType") == "called"
+          ? "Called"
+          : row.getValue("arrivalType") == "voluntary"
+          ? "Voluntary"
+          : "Referral"}
+      </div>
+    ),
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id));
+    },
   },
   {
     accessorKey: "status",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Status" />
+    ),
+    cell: ({ row }) => (
+      <div>
+        {row.getValue("status") == "pending" ? "Continued" : "Completed"}
+      </div>
     ),
   },
   {
@@ -74,12 +103,7 @@ const columns = [
   {
     id: "actions",
     cell: ({ row }) => {
-      return (
-        <TableActions
-          editHref={`/counselings/${row.original.id}`}
-          deleteFunc={() => console.log("deleted")}
-        />
-      );
+      return <TableActions editHref={`/counselings/${row.original.id}`} />;
     },
   },
 ];

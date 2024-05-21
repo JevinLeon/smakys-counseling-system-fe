@@ -4,19 +4,13 @@ import { Link } from "react-router-dom";
 
 const columns = [
   {
-    accessorKey: "id",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Id" />
-    ),
-  },
-  {
     accessorKey: "NISN",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="NISN" />
     ),
     cell: ({ row }) => (
       <Link
-        to={`/students/${row.getValue("id")}`}
+        to={`/students/${row.original.id}`}
         className="hover:underline underline-offset-1"
       >
         {row.getValue("NISN")}
@@ -30,7 +24,7 @@ const columns = [
     ),
     cell: ({ row }) => (
       <Link
-        to={`/students/${row.getValue("id")}`}
+        to={`/students/${row.original.id}`}
         className="hover:underline underline-offset-1"
       >
         {row.getValue("NIS")}
@@ -44,7 +38,7 @@ const columns = [
     ),
     cell: ({ row }) => (
       <Link
-        to={`/students/${row.getValue("id")}`}
+        to={`/students/${row.original.id}`}
         className="hover:underline underline-offset-1"
       >
         {row.getValue("name")}
@@ -52,7 +46,7 @@ const columns = [
     ),
   },
   {
-    accessorKey: "Class.name",
+    accessorKey: "Class?.name",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Class" />
     ),

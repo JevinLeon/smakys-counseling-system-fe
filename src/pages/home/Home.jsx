@@ -1,32 +1,51 @@
 import { GraduationCap, Shapes, Speech, Users } from "lucide-react";
 import PageTitle from "@/components/PageTitle";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
-const cardData = [
-  {
-    label: "Total Students",
-    amount: "210",
-    description: "",
-    icon: GraduationCap,
-  },
-  {
-    label: "Total Classes",
-    amount: "36",
-    icon: Shapes,
-  },
-  {
-    label: "Total Counselings",
-    amount: "121",
-    icon: Speech,
-  },
-  {
-    label: "Total Users",
-    amount: "4",
-    icon: Users,
-  },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getUsers } from "@/redux/actions/user";
+import { getClasses } from "@/redux/actions/class";
+import { getCounselings } from "@/redux/actions/counseling";
+import { getStudents } from "@/redux/actions/student";
 
 const HomePage = () => {
+  const { users } = useSelector((state) => state.user);
+  const { classes } = useSelector((state) => state._class);
+  const { counselings } = useSelector((state) => state.counseling);
+  const { students } = useSelector((state) => state.student);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUsers());
+    dispatch(getClasses());
+    dispatch(getCounselings());
+    dispatch(getStudents());
+  }, [dispatch]);
+
+  const cardData = [
+    {
+      label: "Total Students",
+      amount: students ? students.length : "Loading..",
+      icon: GraduationCap,
+    },
+    {
+      label: "Total Classes",
+      amount: classes ? classes.length : "Loading..",
+      icon: Shapes,
+    },
+    {
+      label: "Total Counselings",
+      amount: counselings ? counselings.length : "Loading..",
+      icon: Speech,
+    },
+    {
+      label: "Total Users",
+      amount: users ? users.length : "Loading..",
+      icon: Users,
+    },
+  ];
+
   return (
     <div className="flex flex-col gap-5 w-full">
       <PageTitle title="Dashboard" />

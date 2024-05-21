@@ -4,19 +4,13 @@ import { Link } from "react-router-dom";
 
 const columns = [
   {
-    accessorKey: "id",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Id" />
-    ),
-  },
-  {
     accessorKey: "name",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Name" />
     ),
     cell: ({ row }) => (
       <Link
-        to={`/classes/${row.getValue("id")}`}
+        to={`/classes/${row.original.id}`}
         className="hover:underline underline-offset-1"
       >
         {row.getValue("name")}
