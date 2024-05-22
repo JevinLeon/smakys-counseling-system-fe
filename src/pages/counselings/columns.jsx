@@ -48,7 +48,7 @@ const columns = [
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="Counseling Component / Komponen Konseling"
+        title="Service Component / Komponen Layanan"
       />
     ),
     filterFn: (row, id, value) => {

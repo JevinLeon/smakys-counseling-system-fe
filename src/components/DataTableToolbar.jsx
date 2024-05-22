@@ -14,7 +14,7 @@ export function DataTableToolbar({ table }) {
         {table.getColumn("counselingType") && (
           <DataTableFacetedFilter
             column={table.getColumn("counselingType")}
-            title="Counseling Type"
+            title="Service Component"
             options={counselingType}
           />
         )}

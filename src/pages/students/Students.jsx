@@ -22,16 +22,6 @@ const StudentsPage = () => {
     dispatch(getClasses());
   }, [dispatch]);
 
-  // const exportPdf = async () => {
-  //   const doc = new jsPDF({ orientation: "landscape" });
-
-  //   doc.autoTable({
-  //     html: "#my-table",
-  //   });
-
-  //   doc.save("students.pdf");
-  // };
-
   return (
     <div>
       <div className="flex justify-between">
@@ -50,7 +40,12 @@ const StudentsPage = () => {
           </Button>
           <Button
             variant="destructive"
-            onClick={() => exportPdf("students.pdf")}
+            onClick={() =>
+              exportPdf({
+                title: "Laporan Siswa / Siswa",
+                name: "students.pdf",
+              })
+            }
           >
             <Sheet className="h-4 w-4 mr-2" />
             Export PDF

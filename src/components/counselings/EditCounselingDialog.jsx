@@ -182,12 +182,14 @@ const EditCounselingDialog = ({ id, counseling, students }) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>Edit Counseling</Button>
+        <Button>Edit Service / Pelaksanaan Layanan</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Edit counseling</DialogTitle>
-          <DialogDescription>Update an existing counseling.</DialogDescription>
+          <DialogTitle>Edit service / pelaksanaan layanan</DialogTitle>
+          <DialogDescription>
+            Update an existing service / pelaksanaan layanan.
+          </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className="h-[420px] overflow-auto pl-2 pr-5">
@@ -359,7 +361,7 @@ const EditCounselingDialog = ({ id, counseling, students }) => {
             )}
             <div className="space-y-2 my-2">
               <Label htmlFor="counselingType" className="text-right">
-                Counseling Component / Komponen Konseling
+                Service Component / Komponen Layanan
               </Label>
               <Select
                 onValueChange={(e) => {

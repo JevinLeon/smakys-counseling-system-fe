@@ -150,12 +150,14 @@ const NewCounselingDialog = ({ students }) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>Add Counseling</Button>
+        <Button>Add Service / Pelaksanaan Layanan</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add counseling</DialogTitle>
-          <DialogDescription>Create a new counseling.</DialogDescription>
+          <DialogTitle>Add service / pelaksanaan layanan</DialogTitle>
+          <DialogDescription>
+            Create a new service / pelaksanaan layanan.
+          </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className="h-[420px] overflow-auto pl-2 pr-5">
@@ -327,7 +329,7 @@ const NewCounselingDialog = ({ students }) => {
             )}
             <div className="space-y-2 my-2">
               <Label htmlFor="counselingType" className="text-right">
-                Counseling Component / Komponen Konseling
+                Service Component / Komponen Layanan
               </Label>
               <Select
                 onValueChange={(e) => {
@@ -336,7 +338,7 @@ const NewCounselingDialog = ({ students }) => {
                 disabled={isLoading}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="Counseling Component / Komponen Konseling" />
+                  <SelectValue placeholder="Service Component / Komponen Layanan" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem

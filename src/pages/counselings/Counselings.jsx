@@ -25,7 +25,7 @@ const CounselingsPage = () => {
     <div>
       <div className="flex justify-between">
         <div className="flex gap-4">
-          <PageTitle title="Counselings" />
+          <PageTitle title="Services / Pelaksanaan Layanan" />
           <Button asChild variant="success">
             <Link
               to={`${
@@ -40,7 +40,10 @@ const CounselingsPage = () => {
           <Button
             variant="destructive"
             onClick={() => {
-              exportPdf("counselings.pdf");
+              exportPdf({
+                title: "Laporan Pelaksanaan Layanan",
+                name: "services.pdf",
+              });
             }}
           >
             <Sheet className="h-4 w-4 mr-2" />
@@ -61,13 +64,14 @@ const CounselingsPage = () => {
         )}
       </div>
       <table className="table-bordered hidden" id="my-table">
+        <h1>Laporan Pelaksanaan Layanan</h1>
         <thead>
           <tr>
             <th scope="col">Title</th>
             <th scope="col">Date</th>
             <th scope="col">Description</th>
             <th scope="col">Notes</th>
-            <th scope="col">Counseling Component / Komponen Konseling</th>
+            <th scope="col">Service Component / Komponen Layanan</th>
             <th scope="col">Arrival Type / Riwayat Kedatangan</th>
             <th scope="col">Status</th>
             <th scope="col">Counselor</th>

@@ -38,7 +38,7 @@ const ClassesPage = () => {
           <Button
             variant="destructive"
             onClick={() => {
-              exportPdf("classes.pdf");
+              exportPdf({ title: "Laporan Kelas", name: "classes.pdf" });
             }}
           >
             <Sheet className="h-4 w-4 mr-2" />
