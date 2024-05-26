@@ -301,10 +301,8 @@ const NewStudentDialog = ({ classes }) => {
                 <p className="text-sm text-red-400">{error?.email}</p>
               )}
             </div>
-            <div className="space-y-2 my-2">
-              <Label htmlFor="dateOfBirth" className="text-right">
-                Date of Birth
-              </Label>
+            <div className="flex flex-col space-y-2 my-2">
+              <Label htmlFor="dateOfBirth">Date of Birth</Label>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
@@ -322,12 +320,14 @@ const NewStudentDialog = ({ classes }) => {
                     )}
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-auto p-0">
+                <PopoverContent align="start" className="w-full p-0">
                   <Calendar
                     mode="single"
+                    captionLayout="dropdown-buttons"
                     selected={dateOfBirth}
                     onSelect={setDateOfBirth}
-                    initialFocus
+                    fromYear={1960}
+                    toYear={2030}
                     disabled={(date) =>
                       date > new Date() || date < new Date("1900-01-01")
                     }

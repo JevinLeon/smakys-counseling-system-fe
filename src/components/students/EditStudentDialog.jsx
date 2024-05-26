@@ -326,12 +326,14 @@ const EditStudentDialog = ({ id, student, classes }) => {
                     )}
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-auto p-0">
+                <PopoverContent align="start" className="w-full p-0">
                   <Calendar
                     mode="single"
+                    captionLayout="dropdown-buttons"
                     selected={dateOfBirth}
                     onSelect={setDateOfBirth}
-                    initialFocus
+                    fromYear={1960}
+                    toYear={2030}
                     disabled={(date) =>
                       date > new Date() || date < new Date("1900-01-01")
                     }

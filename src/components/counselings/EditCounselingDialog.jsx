@@ -252,12 +252,14 @@ const EditCounselingDialog = ({ id, counseling, students }) => {
                     {date ? format(date, "PPP") : <span>Pick a date</span>}
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-auto p-0">
+                <PopoverContent align="start" className="w-full p-0">
                   <Calendar
                     mode="single"
+                    captionLayout="dropdown-buttons"
                     selected={date}
                     onSelect={setDate}
-                    initialFocus
+                    fromYear={1960}
+                    toYear={2030}
                   />
                 </PopoverContent>
               </Popover>
