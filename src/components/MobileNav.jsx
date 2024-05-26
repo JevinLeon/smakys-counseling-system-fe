@@ -13,14 +13,14 @@ const MobileNav = () => {
     user?.role == "superadmin"
       ? [
           { name: "Users", href: "/users" },
-          { name: "Counselings", href: "/counselings" },
-          { name: "Counseling Logs", href: "/counseling-logs" },
+          { name: "Services", href: "/services" },
+          { name: "Services Logs", href: "/service-logs" },
           { name: "Students", href: "/students" },
           { name: "Classes", href: "/classes" },
         ]
       : [
-          { name: "Counselings", href: "/counselings" },
-          { name: "Counseling Logs", href: "/counseling-logs" },
+          { name: "Services", href: "/services" },
+          { name: "Service Logs", href: "/service-logs" },
           { name: "Students", href: "/students" },
           { name: "Classes", href: "/classes" },
         ];
