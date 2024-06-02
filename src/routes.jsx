@@ -89,7 +89,7 @@ const routes = [
     ),
   },
   {
-    path: "/counselings",
+    path: "/services",
     element: (
       <ProtectedPage>
         <Layout>
@@ -99,7 +99,7 @@ const routes = [
     ),
   },
   {
-    path: "/counseling-logs",
+    path: "/service-logs",
     element: (
       <ProtectedPage>
         <Layout>
@@ -109,7 +109,7 @@ const routes = [
     ),
   },
   {
-    path: "/counselings/:id",
+    path: "/services/:id",
     element: (
       <ProtectedPage>
         <Layout>

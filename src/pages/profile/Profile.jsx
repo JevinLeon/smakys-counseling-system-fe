@@ -55,10 +55,10 @@ const ProfilePage = () => {
 
   return (
     <>
-      <div className="flex justify-between divide-x">
+      <div className="flex flex-col md:flex-row justify-between md:divide-x">
         <div className="flex-1">
           <PageTitle title="Profile" />
-          <div className="flex-1">
+          <div className="my-4 min-w-[50%]">
             <form className="space-y-4">
               <div className="grid w-full max-w-sm items-center gap-1.5">
                 <Label>Name</Label>
@@ -88,7 +88,7 @@ const ProfilePage = () => {
           </div>
         </div>
         {user && (
-          <div className="flex-1 pl-10">
+          <div className="flex-1 my-6 md:pl-10 md:my-0">
             <PageTitle title="Change Password" />
             <div className="my-4 min-w-[50%]">
               <form className="space-y-4" onSubmit={handleSubmitChangePassword}>
