@@ -35,7 +35,7 @@ const NewStudentDialog = ({ classes }) => {
   const [address, setAddress] = useState("");
   const [healthHistory, setHealthHistory] = useState("");
   const [email, setEmail] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState("2006-01-01");
+  const [dateOfBirth, setDateOfBirth] = useState("");
   const [placeOfBirth, setPlaceOfBirth] = useState("");
   const [universityTarget, setUniversityTarget] = useState("");
   const [status, setStatus] = useState("");

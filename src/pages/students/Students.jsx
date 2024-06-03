@@ -26,7 +26,7 @@ const StudentsPage = () => {
     <div>
       <div className="flex justify-between">
         <div className="flex gap-4">
-          <PageTitle title="Users" />
+          <PageTitle title="Students" />
           <Button asChild variant="success">
             <Link
               to={`${
