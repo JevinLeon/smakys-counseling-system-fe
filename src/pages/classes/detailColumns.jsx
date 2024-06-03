@@ -52,12 +52,6 @@ const columns = [
     ),
   },
   {
-    accessorKey: "Class.name",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Class" />
-    ),
-  },
-  {
     accessorKey: "phoneNo",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Phone no" />
