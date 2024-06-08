@@ -30,7 +30,7 @@ const EditStudentDialog = ({ id, student, classes }) => {
   const [NISN, setNISN] = useState(student.NISN);
   const [NIS, setNIS] = useState(student.NIS);
   const [name, setName] = useState(student.name);
-  const [classId, setClassId] = useState(student.Class?.id);
+  const [classId, setClassId] = useState(student.Classes?.id);
   const [phoneNo, setPhoneNo] = useState(student.phoneNo);
   const [address, setAddress] = useState(student.address);
   const [healthHistory, setHealthHistory] = useState(student.healthHistory);
@@ -229,7 +229,7 @@ const EditStudentDialog = ({ id, student, classes }) => {
                 disabled={isLoading}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder={student.Class?.name} />
+                  <SelectValue placeholder={student.Classes?.name} />
                 </SelectTrigger>
                 <SelectContent>
                   {classes.map((_class) => (
@@ -330,7 +330,7 @@ const EditStudentDialog = ({ id, student, classes }) => {
                   <Calendar
                     mode="single"
                     captionLayout="dropdown-buttons"
-                    selected={dateOfBirth}
+                    selected={new Date(dateOfBirth)}
                     onSelect={setDateOfBirth}
                     fromYear={1960}
                     toYear={2030}

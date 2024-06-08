@@ -21,29 +21,31 @@ const ClassesPage = () => {
 
   return (
     <div>
-      <div className="flex justify-between">
-        <div className="flex gap-4">
+      <div className="flex justify-between flex-col md:flex-row gap-4 md:gap-0">
+        <div className="flex gap-4 flex-col lg:flex-row">
           <PageTitle title="Classes" />
-          <Button asChild variant="success">
-            <Link
-              to={`${
-                import.meta.env.VITE_BACKEND_API
-              }/api/classes/export-excel`}
-              target="_blank"
+          <div className="flex gap-4 flex-wrap">
+            <Button asChild variant="success">
+              <Link
+                to={`${
+                  import.meta.env.VITE_BACKEND_API
+                }/api/classes/export-excel`}
+                target="_blank"
+              >
+                <Sheet className="h-4 w-4 mr-2" />
+                Export Excel
+              </Link>
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={() => {
+                exportPdf({ title: "Laporan Kelas", name: "classes.pdf" });
+              }}
             >
               <Sheet className="h-4 w-4 mr-2" />
-              Export Excel
-            </Link>
-          </Button>
-          <Button
-            variant="destructive"
-            onClick={() => {
-              exportPdf({ title: "Laporan Kelas", name: "classes.pdf" });
-            }}
-          >
-            <Sheet className="h-4 w-4 mr-2" />
-            Export PDF
-          </Button>
+              Export PDF
+            </Button>
+          </div>
         </div>
         <NewClassDialog />
       </div>

@@ -24,7 +24,7 @@ const UsersPage = () => {
 
   return (
     <div>
-      <div className="flex justify-between">
+      <div className="flex justify-between gap-4 flex-col md:flex-row">
         <PageTitle title="Users" />
         <NewUserDialog />
       </div>
