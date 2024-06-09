@@ -80,6 +80,11 @@ const columns = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Date of Birth" />
     ),
+    cell: ({ row }) => {
+      return (
+        <p>{new Date(row.original.dateOfBirth).toLocaleDateString("en-GB")}</p>
+      );
+    },
   },
   {
     accessorKey: "placeOfBirth",

@@ -80,7 +80,13 @@ const StudentDetail = () => {
               </div>
               <div className="grid w-full max-w-sm items-center gap-1.5">
                 <Label>Date of Birth</Label>
-                <Input type="text" value={student.dateOfBirth} disabled />
+                <Input
+                  type="text"
+                  value={new Date(student.dateOfBirth).toLocaleDateString(
+                    "en-GB"
+                  )}
+                  disabled
+                />
               </div>
               <div className="grid w-full max-w-sm items-center gap-1.5">
                 <Label>Place of Birth</Label>

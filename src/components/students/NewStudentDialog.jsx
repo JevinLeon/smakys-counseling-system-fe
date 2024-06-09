@@ -136,6 +136,8 @@ const NewStudentDialog = ({ classes }) => {
       return;
     }
 
+    // const date = storeDate(dateOfBirth);
+
     const data = {
       NISN,
       NIS,

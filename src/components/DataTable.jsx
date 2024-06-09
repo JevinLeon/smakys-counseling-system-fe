@@ -56,8 +56,8 @@ export function DataTable({ columns, data, mainSearchTerm = "name" }) {
 
   return (
     <div>
-      <div className="flex items-center py-4">
-        <div className="flex flex-1 items-center space-x-2">
+      <div className="flex md:items-center py-4 gap-4 flex-col md:flex-row ">
+        <div className="flex flex-1 md:items-center space-x-2 gap-4 flex-col md:flex-row">
           <Input
             placeholder={`Filter ${mainSearchTerm}...`}
             value={table.getColumn(mainSearchTerm)?.getFilterValue() ?? ""}

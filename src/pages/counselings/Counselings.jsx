@@ -23,32 +23,34 @@ const CounselingsPage = () => {
 
   return (
     <div>
-      <div className="flex justify-between">
-        <div className="flex gap-4">
+      <div className="flex justify-between flex-col md:flex-row gap-4 md:gap-0">
+        <div className="flex gap-4 flex-col lg:flex-row">
           <PageTitle title="Services / Pelaksanaan Layanan" />
-          <Button asChild variant="success">
-            <Link
-              to={`${
-                import.meta.env.VITE_BACKEND_API
-              }/api/counselings/export-excel`}
-              target="_blank"
+          <div className="flex gap-4 flex-wrap">
+            <Button asChild variant="success">
+              <Link
+                to={`${
+                  import.meta.env.VITE_BACKEND_API
+                }/api/counselings/export-excel`}
+                target="_blank"
+              >
+                <Sheet className="h-4 w-4 mr-2" />
+                Export Excel
+              </Link>
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={() => {
+                exportPdf({
+                  title: "Laporan Pelaksanaan Layanan",
+                  name: "services.pdf",
+                });
+              }}
             >
               <Sheet className="h-4 w-4 mr-2" />
-              Export Excel
-            </Link>
-          </Button>
-          <Button
-            variant="destructive"
-            onClick={() => {
-              exportPdf({
-                title: "Laporan Pelaksanaan Layanan",
-                name: "services.pdf",
-              });
-            }}
-          >
-            <Sheet className="h-4 w-4 mr-2" />
-            Export PDF
-          </Button>
+              Export PDF
+            </Button>
+          </div>
         </div>
         <NewCounselingDialog counselings={counselings} students={students} />
       </div>
@@ -83,13 +85,13 @@ const CounselingsPage = () => {
             counselings?.map((row) => (
               <tr key={row?.id}>
                 <td>{row?.title}</td>
-                <td>{row?.date}</td>
+                <td>{new Date(row?.date).toLocaleDateString("en-GB")}</td>
                 <td>{row?.description}</td>
                 <td>{row?.notes}</td>
                 <td>{row?.counselingType}</td>
                 <td>{row?.arrivalType}</td>
                 <td>{row?.status}</td>
-                <td>{row?.User?.name}</td>
+                <td>{row?.Users?.name}</td>
                 <td>{row?.NISN}</td>
               </tr>
             ))}

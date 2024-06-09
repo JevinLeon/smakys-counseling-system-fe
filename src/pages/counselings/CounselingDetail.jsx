@@ -86,19 +86,47 @@ const CounselingDetail = () => {
               </div>
               <div className="grid w-full max-w-sm items-center gap-1.5">
                 <Label>Counseling Type</Label>
-                <Input type="text" value={counseling.counselingType} disabled />
+                <Input
+                  type="text"
+                  value={
+                    counseling.counselingType == "Layanan_Dasar___Seminar"
+                      ? "Layanan Dasar - Seminar"
+                      : counseling.counselingType == "Layanan_Dasar___Klasikal"
+                      ? "Layanan Dasar - Klasikal"
+                      : counseling.counselingType == "Layanan_Responsive"
+                      ? "Layanan Responsive"
+                      : "Layanan Penempatan dan Perencanaan Individual"
+                  }
+                  disabled
+                />
               </div>
               <div className="grid w-full max-w-sm items-center gap-1.5">
                 <Label>Arrival Type</Label>
-                <Input type="text" value={counseling.arrivalType} disabled />
+                <Input
+                  type="text"
+                  value={
+                    counseling.arrivalType == "voluntary"
+                      ? "Voluntary"
+                      : counseling.arrivalType == "called"
+                      ? "Called"
+                      : "Referral"
+                  }
+                  disabled
+                />
               </div>
               <div className="grid w-full max-w-sm items-center gap-1.5">
                 <Label>Status</Label>
-                <Input type="text" value={counseling.status} disabled />
+                <Input
+                  type="text"
+                  value={
+                    counseling.status == "pending" ? "Pending" : "Completed"
+                  }
+                  disabled
+                />
               </div>
               <div className="grid w-full max-w-sm items-center gap-1.5">
                 <Label>Counselor</Label>
-                <Input type="text" value={counseling.User.name} disabled />
+                <Input type="text" value={counseling.Users.name} disabled />
               </div>
               <div className="grid w-full max-w-sm items-center gap-1.5">
                 <Label>Students NISN</Label>

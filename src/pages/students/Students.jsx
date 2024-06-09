@@ -24,33 +24,35 @@ const StudentsPage = () => {
 
   return (
     <div>
-      <div className="flex justify-between">
-        <div className="flex gap-4">
+      <div className="flex justify-between flex-col md:flex-row gap-4 md:gap-0">
+        <div className="flex gap-4 flex-col lg:flex-row">
           <PageTitle title="Students" />
-          <Button asChild variant="success">
-            <Link
-              to={`${
-                import.meta.env.VITE_BACKEND_API
-              }/api/students/export-excel`}
-              target="_blank"
+          <div className="flex gap-4 flex-wrap">
+            <Button asChild variant="success">
+              <Link
+                to={`${
+                  import.meta.env.VITE_BACKEND_API
+                }/api/students/export-excel`}
+                target="_blank"
+              >
+                <Sheet className="h-4 w-4 mr-2" />
+                Export Excel
+              </Link>
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={() =>
+                exportPdf({
+                  title: "Laporan Siswa / Siswa",
+                  name: "students.pdf",
+                })
+              }
             >
               <Sheet className="h-4 w-4 mr-2" />
-              Export Excel
-            </Link>
-          </Button>
-          <Button
-            variant="destructive"
-            onClick={() =>
-              exportPdf({
-                title: "Laporan Siswa / Siswa",
-                name: "students.pdf",
-              })
-            }
-          >
-            <Sheet className="h-4 w-4 mr-2" />
-            Export PDF
-          </Button>
-          <UploadStudentExcelDialog />
+              Export PDF
+            </Button>
+            <UploadStudentExcelDialog />
+          </div>
         </div>
         <NewStudentDialog classes={classes} />
       </div>
@@ -61,7 +63,7 @@ const StudentsPage = () => {
           <DataTable columns={columns} data={students} mainSearchTerm="NISN" />
         )}
       </div>
-      <table className="table-bordered hidden" id="my-table">
+      <table className="table-bordered hidden " id="my-table">
         <thead>
           <tr>
             <th scope="col">NISN</th>
@@ -88,12 +90,14 @@ const StudentsPage = () => {
                 <td>{row?.NISN}</td>
                 <td>{row?.NIS}</td>
                 <td>{row?.name}</td>
-                <td>{row?.Class?.name}</td>
+                <td>{row?.Classes?.name}</td>
                 <td>{row?.phoneNo}</td>
                 <td>{row?.address}</td>
                 <td>{row?.healthHistory}</td>
                 <td>{row?.email}</td>
-                <td>{row?.dateOfBirth}</td>
+                <td>
+                  {new Date(row?.dateOfBirth).toLocaleDateString("en-GB")}
+                </td>
                 <td>{row?.placeOfBirth}</td>
                 <td>{row?.universityTarget}</td>
                 <td>{row?.status}</td>
