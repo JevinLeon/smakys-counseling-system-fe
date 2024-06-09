@@ -27,7 +27,7 @@ const CounselingDetail = () => {
 
   return (
     <div>
-      <PageTitle title="Detail Konseling" />
+      <PageTitle title="Detail Pelaksanaan Layanan" />
 
       <div className="my-8 max-w-[50%]">
         {isLoading && (

@@ -103,7 +103,7 @@ const columns = [
     ),
   },
   {
-    accessorKey: "User.name",
+    accessorKey: "Users.name",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Counselor" />
     ),
