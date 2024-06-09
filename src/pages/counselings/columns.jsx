@@ -10,7 +10,7 @@ const columns = [
     ),
     cell: ({ row }) => (
       <Link
-        to={`/counselings/${row.original.id}`}
+        to={`/services/${row.original.id}`}
         className="hover:underline underline-offset-1"
       >
         {row.getValue("title")}
@@ -22,6 +22,9 @@ const columns = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Date" />
     ),
+    cell: ({ row }) => {
+      return <p>{new Date(row.original.date).toLocaleDateString("en-GB")}</p>;
+    },
   },
   {
     accessorKey: "description",
@@ -50,6 +53,17 @@ const columns = [
         column={column}
         title="Service Component / Komponen Layanan"
       />
+    ),
+    cell: ({ row }) => (
+      <div>
+        {row.getValue("counselingType") == "Layanan_Dasar___Seminar"
+          ? "Layanan Dasar - Seminar"
+          : row.getValue("counselingType") == "Layanan_Dasar___Klasikal"
+          ? "Layanan Dasar - Klasikal"
+          : row.getValue("counselingType") == "Layanan_Responsive"
+          ? "Layanan Responsive"
+          : "Layanan Penempatan dan Perencanaan Individual"}
+      </div>
     ),
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id));
@@ -103,7 +117,7 @@ const columns = [
   {
     id: "actions",
     cell: ({ row }) => {
-      return <TableActions editHref={`/counselings/${row.original.id}`} />;
+      return <TableActions editHref={`/services/${row.original.id}`} />;
     },
   },
 ];

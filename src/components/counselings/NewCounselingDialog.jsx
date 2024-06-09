@@ -344,25 +344,25 @@ const NewCounselingDialog = ({ students }) => {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem
-                    value="Layanan Dasar - Seminar"
+                    value="Layanan_Dasar___Seminar"
                     className="cursor-pointer"
                   >
                     Layanan Dasar - Seminar
                   </SelectItem>
                   <SelectItem
-                    value="Layanan Dasar - Klasikal"
+                    value="Layanan_Dasar___Klasikal"
                     className="cursor-pointer"
                   >
                     Layanan Dasar - Klasikal
                   </SelectItem>
                   <SelectItem
-                    value="Layanan Responsive"
+                    value="Layanan_Responsive"
                     className="cursor-pointer"
                   >
                     Layanan Responsive
                   </SelectItem>
                   <SelectItem
-                    value="Layanan Penempatan dan Perencanaan Individual"
+                    value="Layanan_Penempatan_dan_Perencanaan_Individual"
                     className="cursor-pointer"
                   >
                     Layanan Penempatan dan Perencanaan Individual
@@ -428,16 +428,15 @@ const NewCounselingDialog = ({ students }) => {
                 <p className="text-sm text-red-400">{error?.status}</p>
               )}
             </div>
-
-            <DialogFooter className="mt-4">
-              <Button type="submit" disabled={isLoading}>
-                {isLoading && (
-                  <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
-                )}
-                {isLoading ? "Saving changes.." : "Save changes"}
-              </Button>
-            </DialogFooter>
           </div>
+          <DialogFooter className="mt-4">
+            <Button type="submit" disabled={isLoading}>
+              {isLoading && (
+                <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
+              )}
+              {isLoading ? "Saving changes.." : "Save changes"}
+            </Button>
+          </DialogFooter>
         </form>
       </DialogContent>
     </Dialog>

@@ -15,7 +15,7 @@ const columns = [
     ),
     cell: ({ row }) => (
       <div>
-        {row.original.User.name}{" "}
+        {row.original.Users.name}{" "}
         <Badge
           variant={
             row.original.activity == "created"
@@ -28,7 +28,7 @@ const columns = [
           {row.original.activity}
         </Badge>{" "}
         counseling with id {row.original.counselingId}#
-        {row.original.Counseling.title}
+        {row.original.Counselings.title}
       </div>
     ),
   },
@@ -37,6 +37,9 @@ const columns = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Date" />
     ),
+    cell: ({ row }) => {
+      return <p>{new Date(row.original.date).toLocaleDateString("en-GB")}</p>;
+    },
   },
 ];
 
