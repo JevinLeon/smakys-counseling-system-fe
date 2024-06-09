@@ -85,13 +85,13 @@ const CounselingsPage = () => {
             counselings?.map((row) => (
               <tr key={row?.id}>
                 <td>{row?.title}</td>
-                <td>{row?.date}</td>
+                <td>{new Date(row?.date).toLocaleDateString("en-GB")}</td>
                 <td>{row?.description}</td>
                 <td>{row?.notes}</td>
                 <td>{row?.counselingType}</td>
                 <td>{row?.arrivalType}</td>
                 <td>{row?.status}</td>
-                <td>{row?.User?.name}</td>
+                <td>{row?.Users?.name}</td>
                 <td>{row?.NISN}</td>
               </tr>
             ))}

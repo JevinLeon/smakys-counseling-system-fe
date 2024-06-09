@@ -16,19 +16,19 @@ export const arrivalType = [
 export const counselingType = [
   {
     label: "Layanan Dasar - Seminar",
-    value: "Layanan Dasar - Seminar",
+    value: "Layanan_Dasar___Seminar",
   },
   {
     label: "Layanan Dasar - Klasikal",
-    value: "Layanan Dasar - Klasikal",
+    value: "Layanan_Dasar___Klasikal",
   },
   {
     label: "Layanan Responsive",
-    value: "Layanan Responsive",
+    value: "Layanan_Responsive",
   },
   {
     label: "Layanan Penempatan dan Perencanaan Individual",
-    value: "Layanan Penempatan dan Perencanaan Individual",
+    value: "Layanan_Penempatan_dan_Perencanaan_Individual",
   },
 ];
 

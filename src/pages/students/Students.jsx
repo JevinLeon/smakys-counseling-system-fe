@@ -63,7 +63,7 @@ const StudentsPage = () => {
           <DataTable columns={columns} data={students} mainSearchTerm="NISN" />
         )}
       </div>
-      <table className="table-bordered hidden" id="my-table">
+      <table className="table-bordered hidden " id="my-table">
         <thead>
           <tr>
             <th scope="col">NISN</th>
@@ -90,12 +90,14 @@ const StudentsPage = () => {
                 <td>{row?.NISN}</td>
                 <td>{row?.NIS}</td>
                 <td>{row?.name}</td>
-                <td>{row?.Class?.name}</td>
+                <td>{row?.Classes?.name}</td>
                 <td>{row?.phoneNo}</td>
                 <td>{row?.address}</td>
                 <td>{row?.healthHistory}</td>
                 <td>{row?.email}</td>
-                <td>{row?.dateOfBirth}</td>
+                <td>
+                  {new Date(row?.dateOfBirth).toLocaleDateString("en-GB")}
+                </td>
                 <td>{row?.placeOfBirth}</td>
                 <td>{row?.universityTarget}</td>
                 <td>{row?.status}</td>
