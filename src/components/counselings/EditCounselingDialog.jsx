@@ -480,16 +480,15 @@ const EditCounselingDialog = ({ id, counseling, students }) => {
                 <p className="text-sm text-red-400">{error?.status}</p>
               )}
             </div>
-
-            <DialogFooter className="mt-4">
-              <Button type="submit" disabled={isLoading}>
-                {isLoading && (
-                  <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
-                )}
-                {isLoading ? "Saving changes.." : "Save changes"}
-              </Button>
-            </DialogFooter>
           </div>
+          <DialogFooter className="mt-4">
+            <Button type="submit" disabled={isLoading}>
+              {isLoading && (
+                <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
+              )}
+              {isLoading ? "Saving changes.." : "Save changes"}
+            </Button>
+          </DialogFooter>
         </form>
       </DialogContent>
     </Dialog>
